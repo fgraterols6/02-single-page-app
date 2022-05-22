@@ -1,0 +1,23 @@
+<div class="row row-cols-1 row-cols-md-2 mb-3">
+    <div class="col">
+        <h2>Resultados de: <small> {{ termino | uppercase}}</small></h2>
+    </div>
+    <div class="col text-end">
+        <a [routerLink]="['/heroes']" class="btn btn-success"> Volver </a>
+    </div>
+</div>
+
+<hr>
+
+<div class="row" *ngIf="heroes.length === 0">
+    <div class="col  animated fadeIn fast">
+        <div class="alert alert-danger" role="alert">
+            No se encontraron resultados para la búseueda: "<b>{{ termino }}</b>".
+        </div>
+    </div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <app-heroe-card *ngFor="let heroe of heroes, let i = index" [heroe]="heroe" [index]="heroe.idx" (heroeSelected)="verHeroe( $event )"></app-heroe-card>
+</div>
